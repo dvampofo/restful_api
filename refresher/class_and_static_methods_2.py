@@ -7,7 +7,7 @@ class Book:
         self.weight = weight
     
     def __repr__(self) -> str:
-        return f"<Book {self.name}, {self.book_type}, weight {self.weight}>"
+        return f"<Book {self.name}, {self.book_type}, weight {self.weight}g>"
     
     @classmethod
     def hardcover(cls, name, page_weight):
