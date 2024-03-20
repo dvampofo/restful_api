@@ -6,24 +6,15 @@ from flask_jwt_extended import JWTManager
 
 from db import db
 import models 
+from blocklist import BLOCKLIST
 
-# from blocklist import BLOCKLIST
 from resources.item import blp as ItemBlueprint
 from resources.store import blp as StoreBlueprint
 from resources.tag import blp as TagBlueprint
 from resources.user import blp as UserBlueprint
 
-# @jwt.additional_claims_loader
-# def add_claims_to_jwt(identity):
-#     # TODO: Read from a config file instead of hard-coding
-#     if identity == 1:
-#         return {"is_admin": True}
-#     return {"is_admin": False}
 
 
-# @jwt.token_in_blocklist_loader
-# def check_if_token_in_blocklist(jwt_header, jwt_payload):
-#     return jwt_payload["jti"] in BLOCKLIST
 
 # @jwt.needs_fresh_token_loader
 # def token_not_fresh_callback(jwt_header, jwt_payload):
@@ -35,14 +26,7 @@ from resources.user import blp as UserBlueprint
 #     )
 
 
-# @jwt.revoked_token_loader
-# def revoked_token_callback(jwt_header, jwt_payload):
-#     return (
-#         jsonify(
-#             {"description": "The token has been revoked.", "error": "token_revoked"}
-#         ),
-#         401,
-#     )
+
     
 def create_app(db_url=None):
     app = Flask(__name__)
@@ -62,6 +46,27 @@ def create_app(db_url=None):
     api = Api(app)
     
     jwt = JWTManager(app)
+    
+    @jwt.token_in_blocklist_loader
+    def check_if_token_in_blocklist(jwt_header, jwt_payload):
+        return jwt_payload["jti"] in BLOCKLIST
+    
+    @jwt.revoked_token_loader
+    def revoked_token_callback(jwt_header, jwt_payload):
+        return (
+            jsonify(
+                {"description": "The token has been revoked.", "error": "token_revoked"}
+            ),
+            401,
+        )
+    
+    @jwt.additional_claims_loader
+    def add_claims_to_jwt(identity):
+        # TODO: Read from a config file instead of hard-coding
+        if identity == 1:
+            return {"is_admin": True}
+        return {"is_admin": False}
+
     
     @jwt.expired_token_loader
     def expired_token_callback(jwt_header, jwt_payload):
