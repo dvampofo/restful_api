@@ -1,3 +1,3 @@
 FLASK_APP=app 
 FLASK_DEBUG=1
-PYTHONPATH=/firstRestAPI/app.py"
+PYTHONPATH=/firstRestAPI/app.py
