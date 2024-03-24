@@ -5,7 +5,7 @@ from flask_jwt_extended import create_access_token, jwt_required, get_jwt, creat
 
 from db import db
 from blocklist import BLOCKLIST
-from firstRestAPI.models.app import UserModel
+from models import UserModel
 from schemas import UserSchema
 
 blp = Blueprint("Users", "users", description="Operations on users")
