@@ -1,6 +1,6 @@
 FROM python:3.12
 # ENV PYTHONPATH "${PYTHONPATH}:/firstRestAPI/app"
-WORKDIR /app
+WORKDIR /app/firstRestAPI/app
 COPY ./firstRestAPI/requirements.txt requirements.txt
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
 COPY . .
