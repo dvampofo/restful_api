@@ -16,7 +16,7 @@ from resources.user import blp as UserBlueprint
     
 def create_app(db_url=None):
     app = Flask(__name__)
-    
+    # print("This is inside the app.py!!!")
     app.config["PROPAGATE_EXCEPTIONS"] = True 
     app.config["API_TITLE"] = "Stores REST API"
     app.config["API_VERSION"] = "v1"
