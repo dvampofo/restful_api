@@ -1,7 +1,0 @@
-FROM python:3.12
-# ENV PYTHONPATH "${PYTHONPATH}:/firstRestAPI/app"
-WORKDIR /app
-COPY ./firstRestAPI/requirements.txt requirements.txt
-RUN pip install --no-cache-dir --upgrade -r requirements.txt
-COPY . .
-CMD ["/bin/bash", "docker-entrypoint.sh"]
