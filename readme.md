@@ -1,7 +1,7 @@
 # Building a RESTful API
 
 ## Introduction
-I will be guided in creating simple, intermediate, and advanced REST APIs including authentication, deployments, databases, and much more.
+I will be creating a simple, intermediate, and advanced REST APIs including authentication, deployments, databases, and much more.
 
 Using Flask and popular extensions Flask-Smorest, Flask-JWT-Extended, and Flask-SQLAlchemy, I will dive right into developing complete, solid, production-ready REST APIs. I will be using [Insomnia](https://insomnia.rest/) to send payloads to my endpoints.
 
